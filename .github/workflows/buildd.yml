@@ -44,6 +44,24 @@ jobs:
           BAR_FILE_NAME: "static_app-demo.bar"
           BAR_FILE_DIR: "./bar-files"
           APPLICATION_NAME: "static_app_workspace"
+      
+      # Step: List the bar files  that are generated
+      - name: Debug File Structure
+        run: |
+          echo "Listing files in the current workspace:"
+          ls -R .
+
+
+
+          
+      # Step : Find a generated bar file
+      - name: Find and Commit BAR File
+        run: |
+          echo "Searching for BAR file..."
+          find . -name "*.bar" -print
+          git add ./bar-files/static_app-demo.bar || echo "BAR file not found"
+          git commit -m "Generated BAR file:static_app-demo.bar" || echo "No changes to commit"
+          git push origin main
 
       # Step 6: Commit and Push the Generated BAR File to GitHub
       - name: Commit and Push BAR File
@@ -56,4 +74,3 @@ jobs:
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
