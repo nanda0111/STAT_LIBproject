@@ -3,13 +3,13 @@
 # Variables
 INTEGRATION_NODE="${INTEGRATION_NODE:-IN7}"         # Default node name
 INTEGRATION_SERVER="${INTEGRATION_SERVER:-IE7}"    # Default server name
-WORKSPACE_DIR="${WORKSPACE_DIR:-/home/ace/IBM/ACET12/workspace}" # Default workspace directory
+WORKSPACE_DIR="${WORKSPACE_DIR:-./workspace}"      # Relative path for workspace
 BAR_FILE_NAME="${BAR_FILE_NAME:-static_app-demo.bar}"  # Default BAR file name
-BAR_FILE_DIR="${BAR_FILE_DIR:-/home/ace/STAT_LIBproject/bar-files}"   # Directory for storing BAR files
-BAR_FILE="$BAR_FILE_DIR/$BAR_FILE_NAME"              # Full path to BAR file
+BAR_FILE_DIR="${BAR_FILE_DIR:-./bar-files}"        # Relative path for storing BAR files
+BAR_FILE="$BAR_FILE_DIR/$BAR_FILE_NAME"            # Full path to BAR file
 APPLICATION_NAME="${APPLICATION_NAME:-static_app_workspace}" # Default application/library name
 
-LOG_FILE="/tmp/build.log"                  # Log file location
+LOG_FILE="./build.log"  # Log file location (relative path)
 
 # Ensure the log file is clean before each run
 > $LOG_FILE

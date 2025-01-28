@@ -22,30 +22,36 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ibm-ace
 
-      # Step 3: Make the build.sh script executable
+      # Step 3: Create Workspace and BAR File Directories
+      - name: Prepare Workspace and Directories
+        run: |
+          mkdir -p ./workspace
+          mkdir -p ./bar-files
+
+      # Step 4: Make the build.sh script executable
       - name: Make build.sh Executable
         run: |
           chmod +x ./build.sh
 
-      # Step 4: Execute the Build Script to Generate BAR File
+      # Step 5: Execute the Build Script to Generate BAR File
       - name: Generate BAR File
         run: |
           ./build.sh
         env:
           INTEGRATION_NODE: "IN7"
           INTEGRATION_SERVER: "IE7"
-          WORKSPACE_DIR: "/home/ace/IBM/ACET12/workspace"
+          WORKSPACE_DIR: "./workspace"
           BAR_FILE_NAME: "static_app-demo.bar"
-          BAR_FILE_DIR: "/home/ace/bar-files"
+          BAR_FILE_DIR: "./bar-files"
           APPLICATION_NAME: "static_app_workspace"
 
-      # Step 5: Commit and Push the Generated BAR File to GitHub
+      # Step 6: Commit and Push the Generated BAR File to GitHub
       - name: Commit and Push BAR File
         run: |
           echo "Committing BAR file to the repository..."
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add /home/ace/bar-files/static_app-demo.bar
+          git add ./bar-files/static_app-demo.bar
           git commit -m "Generated BAR file: static_app-demo.bar"
           git push origin main
         env:
