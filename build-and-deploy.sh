@@ -5,7 +5,7 @@ INTEGRATION_NODE="${INTEGRATION_NODE:-IN2}"         # Default node name
 INTEGRATION_SERVER="${INTEGRATION_SERVER:-IS2}"     # Default server name
 WORKSPACE_DIR="${WORKSPACE_DIR:-.}"                # Default workspace directory
 BAR_FILE="${BAR_FILE:-STAT_LIBproject.generated.bar}" # Default BAR file name
-BAR_FILE_DIR="/home/ace/bar-files"                 # Directory for storing BAR files
+BAR_FILE_DIR="/home/ace/STAT_LIBproject.git/bar-files"                 # Directory for storing BAR files
 APPLICATION_NAME="${APPLICATION_NAME:-STAT_LIB}"   # Default application/library name
 OVERRIDE_FILE="${OVERRIDE_FILE}"                   # Optional override file
 
