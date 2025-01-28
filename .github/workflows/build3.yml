@@ -54,7 +54,7 @@ jobs:
 
 
           
-      # Step 5: Find a generated bar file
+      # Step : Find a generated bar file
       - name: Find and Commit BAR File
         run: |
           echo "Searching for BAR file..."
