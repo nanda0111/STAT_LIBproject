@@ -1,0 +1,14 @@
+Generating BAR file for static_app_workspace...
+[2025/01/28/07:10:04] [INFO] CommandProcessor: parseArgs { Adding file to compile list: static_app_workspace/.project } 
+[2025/01/28/07:10:04] [INFO] CommandProcessor: process { mqsicreatebar arguments: } 
+[2025/01/28/07:10:04] [INFO] CommandProcessor: process { [-showlocation, -b, ./bar-files/static_app-demo.bar, -a, static_app_workspace, -wmbtData] } 
+[2025/01/28/07:10:06] [INFO] CommandProcessor: process { Disable auto-build before opening the projects } 
+[2025/01/28/07:10:06] [INFO] CommandProcessor: openWorkspace {  } 
+[2025/01/28/07:10:06] [INFO] CommandProcessor: openWorkspace { List of applications to be processed: static_app_workspace } 
+BIP0960E Incorrect "-a", "-l", "-s", "-p", or "-o" argument supplied to mqsicreatebar.
+
+Project directory "static_app_workspace" does not exist.
+
+
+[2025/01/28/07:10:06] [INFO] CommandProcessor: projectToAddorOpen { Required project "static_app_workspace" does not exist on the file system } 
+BAR file generated successfully: ./bar-files/static_app-demo.bar
