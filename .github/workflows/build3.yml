@@ -52,7 +52,7 @@ jobs:
         run: |
           echo "Committing BAR file to the repository..."
           git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          git config user.email "nandakishoretherdelly@gmail.com"
           git add ./bar-files/static_app-demo.bar
           git commit -m "Generated BAR file: static_app-demo.bar"
           git push origin main
