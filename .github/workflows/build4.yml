@@ -1,0 +1,65 @@
+name: Build and Deploy BAR File
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the 'main' branch
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    container:
+      image: ibmcom/ace:12.0.10.0  # Use IBM ACE pre-installed Docker image
+
+    steps:
+      # Step 1: Check out the source code
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      # Step 2: Create Workspace and BAR File Directories
+      - name: Prepare Workspace and BAR File Directories
+        run: |
+          mkdir -p ./workspace
+          mkdir -p ./bar-files
+
+      # Step 3: Make build.sh executable
+      - name: Set Permissions for build.sh
+        run: chmod +x ./build.sh
+
+      # Step 4: Verify IBM ACE Installation
+      - name: Check IBM ACE CLI
+        run: |
+          echo "Verifying IBM ACE CLI installation..."
+          which mqsicreatebar || echo "Error: mqsicreatebar not found!"
+          mqsicreatebar -v || echo "Error: IBM ACE CLI is not working!"
+
+      # Step 5: Execute the Build Script to Generate BAR File
+      - name: Generate BAR File
+        run: ./build.sh
+        env:
+          INTEGRATION_NODE: "IN7"
+          INTEGRATION_SERVER: "IE7"
+          WORKSPACE_DIR: "./workspace"
+          BAR_FILE_NAME: "static_app-demo.bar"
+          BAR_FILE_DIR: "./bar-files"
+          APPLICATION_NAME: "static_app_workspace"
+
+      # Step 6: Debug if BAR File Exists
+      - name: Verify BAR File Generation
+        run: |
+          echo "Checking if BAR file was created..."
+          ls -lh ./bar-files/ || echo "Error: No BAR file found!"
+
+      # Step 7: Commit and Push the Generated BAR File to GitHub
+      - name: Commit and Push BAR File
+        run: |
+          echo "Committing BAR file to the repository..."
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "nandakishoretherdelly@gmail.com"
+          git add -f ./bar-files/static_app-demo.bar || echo "Warning: BAR file not found!"
+          git commit -m "Generated BAR file: static_app-demo.bar" || echo "No changes to commit"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
